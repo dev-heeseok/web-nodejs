@@ -2,6 +2,10 @@
 
 Node.js 를 공부하면서 샘플 테스트를 작성하기 위한 프로젝트이다. 간단한 웹 페이지 작성 및 필요한 기록들을 문서로 작성하여 관리할 예정이다.
 
+## Language
+
+JavaScript, HTML, CSS, jQuery, Node.js
+
 ## Environment
 
 Node.js 홈페이지에 업로드 되어진 설치파일을 다운 받아 사용하면 된다. 샘플 코드를 작성할 때에는 최신버전인('22.04.22 기준) v18.0.0 을 사용하고 있다.
@@ -22,6 +26,11 @@ localhost:3000/server/main.js
 
 - [HelloWorld](web2-nodejs\helloworld\helloworld.js)
 - [Default Server](web2-nodejs\server\main.js)
+- [Query String](web2-nodejs\querystring\main.js)
+
+### Syntax
+
+- [File System](web2-nodejs\syntax\filesystem.js)
 
 ## References
 
