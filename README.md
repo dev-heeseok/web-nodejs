@@ -37,16 +37,6 @@ node web2-nodejs/server/main.js
 localhost:3000/server/main.js
 ```
 
-## Sample codes
-
-- [HelloWorld](tutorial\helloworld\helloworld.js)
-- [Default Server](tutorial\server\main.js)
-- [Query String](tutorial\querystring\main.js)
-
-### Syntax
-
-- [File System](tutorial\syntax\filesystem.js)
-
 ## References
 
 - 생활코딩 Web1 HTML
