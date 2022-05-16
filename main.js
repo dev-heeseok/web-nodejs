@@ -6,6 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const template = require('./lib/template');
 const sanitizeHtml = require('sanitize-html');
+var bodyParser = require('body-parser')
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
   fs.readdir('./data', (error, filelist) => {
@@ -76,22 +80,16 @@ app.get('/create', (req, res) => {
 });
 
 app.post('/create_process', (req, res) => {
-  var body = '';
-  req.on('data', function (data) {
-    body = body + data;
-  });
-  req.on('end', function () {
-    const post = new URLSearchParams(body);
-    const title = post.get("title");
-    const description = post.get("description");
-    console.log('title : ', title);
-    console.log('description : ', description);
+  const post = req.body;
+  const title = post.title;
+  const description = post.description;
+  console.log('title : ', title);
+  console.log('description : ', description);
 
-    fs.writeFile(`data/${title}`, description, 'utf8', function (err) {
-      res.writeHead(302, { Location: `/page/${title}` });
-      res.end();
-    })
-  });
+  fs.writeFile(`data/${title}`, description, 'utf8', function (err) {
+    res.writeHead(302, { Location: `/page/${title}` });
+    res.end();
+  })
 });
 
 app.get('/update/:pageid', (req, res) => {
@@ -124,36 +122,24 @@ app.get('/update/:pageid', (req, res) => {
 });
 
 app.post('/update_process', (req, res) => {
-  var body = '';
-  req.on('data', function (data) {
-    body = body + data;
-  });
-  req.on('end', function () {
-    var post = new URLSearchParams(body);
-    var id = post.get("id");
-    var title = post.get("title");
-    var description = post.get("description");
-    fs.rename(`data/${id}`, `data/${title}`, function (error) {
-      fs.writeFile(`data/${title}`, description, 'utf8', function (err) {
-        res.redirect(`/page/${title}`);
-      })
-    });
+  const post = req.body;
+  var id = post.id;
+  var title = post.title;
+  var description = post.description;
+  fs.rename(`data/${id}`, `data/${title}`, function (error) {
+    fs.writeFile(`data/${title}`, description, 'utf8', function (err) {
+      res.redirect(`/page/${title}`);
+    })
   });
 });
 
 app.post('/delete_process', (req, res) => {
-  var body = '';
-  req.on('data', function (data) {
-    body = body + data;
-  });
-  req.on('end', function () {
-    const post = new URLSearchParams(body);
-    const id = post.get("id");
-    const filteredId = path.parse(id).base;
-    fs.unlink(`data/${filteredId}`, function (error) {
-      res.redirect('/');
-    })
-  });
+  const post = req.body;
+  const id = post.id;
+  const filteredId = path.parse(id).base;
+  fs.unlink(`data/${filteredId}`, function (error) {
+    res.redirect('/');
+  })
 });
 
 app.listen(port, () => {
