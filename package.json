@@ -1,0 +1,22 @@
+{
+  "name": "tutorial-mern-stack-deploy",
+  "version": "1.0.0",
+  "description": "MongoDB, Express, React, Node.js 를 이용하여 제작된 프로젝트를 배포하기 위한 샘플 프로젝트이다.",
+  "main": "index.js",
+  "scripts": {
+    "heroku-prebuild": "cd client && npm ci && npm run build && mv build ../server",
+    "start" : "cd server && npm ci && tsc && node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-heeseok/web-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev-heeseok/web-nodejs/issues"
+  },
+  "homepage": "https://github.com/dev-heeseok/web-nodejs#readme"
+}
