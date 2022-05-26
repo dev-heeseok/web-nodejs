@@ -1,21 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Sign Up Application",
+  "description": "Server",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dev-heeseok/web-nodejs.git"
-  },
+  "keywords": [],
   "author": "dev-heeseok",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dev-heeseok/web-nodejs/issues"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13"
   },
-  "homepage": "https://github.com/dev-heeseok/web-nodejs#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
