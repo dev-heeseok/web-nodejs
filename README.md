@@ -59,3 +59,7 @@ npm init -y
 # scripts 에 deploy 에 필요한 기능 구현
 # scripts 는 `&&` 를 이용하여 필요한 기능을 연결할 수 있다.
 ```
+
+## Reference
+
+- [Heroku에 React + Express 서비스 자동 배포하기](https://youtu.be/ntFeJ30GE40)

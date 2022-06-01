@@ -1,6 +1,10 @@
+### User Define ###
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,react
+# deploy
+build
+
+# Created by https://www.toptal.com/developers/gitignore/api/node,react,sass
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,react,sass
 
 ### Node ###
 # Logs
@@ -155,4 +159,10 @@ psd
 thumb
 sketch
 
-# End of https://www.toptal.com/developers/gitignore/api/node,react
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# End of https://www.toptal.com/developers/gitignore/api/node,react,sass
