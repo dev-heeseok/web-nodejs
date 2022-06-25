@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 
-const cookieParser = require('cookie-parser')
+const { auth } = require('./middleware/auth');
+const cookieParser = require('cookie-parser');
 const User = require('./models/User');
 const configOption = require('./config/configOption');
 const path = require('path');
@@ -24,7 +25,7 @@ mongoose.connect(configOption.mongoURI, { dbName: "health-record" })
   });
 
 app.get('/', (req, res) => res.send("Hello World!"));
-app.post('/api/user/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
   console.log('post /api/user/register');
   console.log(req.body);
 
@@ -38,7 +39,7 @@ app.post('/api/user/register', (req, res) => {
       res.status(200).json({ success: true });
   });
 });
-app.post('/api/user/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   console.log('post /api/user/login');
   console.log(req.body);
 
@@ -69,7 +70,28 @@ app.post('/api/user/login', (req, res) => {
         message: "not found email"
       })
     });
-})
+});
+app.get('/api/users/auth', auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    idAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image
+  });
+});
+
+app.get('/api/users/logout', auth, (req, res) => {
+  console.log("logout start");
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+
+    return res.status(200).send({ success: true });
+  });
+});
 
 const DEFAULT_PORT = 4000;
 const connectedPort = process.env.SERVER_PORT || DEFAULT_PORT;
